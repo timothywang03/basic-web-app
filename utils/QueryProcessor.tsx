@@ -39,6 +39,19 @@ if (squareCubeMatch) {
   });
   return result !== undefined ? `The number ${result} is both a square and a cube.` : "None of the numbers are both a square and a cube.";
 }
+const primeMatch = query.match(/which of the following numbers are primes: ([\d, ]+)/i);
+if (primeMatch) {
+  const numbers = primeMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+  const isPrime = (num: number) => {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  };
+  const primes = numbers.filter(isPrime);
+  return primes.length > 0 ? `The prime numbers are: ${primes.join(', ')}.` : "None of the numbers are primes.";
+}
 
 return "Query not recognized.";
 }
