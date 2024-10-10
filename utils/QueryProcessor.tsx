@@ -56,7 +56,14 @@ const powerMatch = query.match(/what is (\d+) to the power of (\d+)/i);
 if (powerMatch) {
   const base = parseInt(powerMatch[1], 10);
   const exponent = parseInt(powerMatch[2], 10);
-  return `${Math.pow(base, exponent)}`;
+  return `${Math.pow(base, exponent).toLocaleString('fullwide', { useGrouping: false })}`;
+}
+const tripleAddMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
+if (tripleAddMatch) {
+  const num1 = parseInt(tripleAddMatch[1], 10);
+  const num2 = parseInt(tripleAddMatch[2], 10);
+  const num3 = parseInt(tripleAddMatch[3], 10);
+  return `${num1 + num2 + num3}`;
 }
 
 return "Query not recognized.";
