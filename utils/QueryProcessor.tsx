@@ -10,6 +10,10 @@ export default function QueryProcessor(query: string): string {
     return ("Andrew ID: twang3");
   }
 
-  if (query.includes("What is 28 plus 93?")) 
-    return "111";
+  const minusMatch = query.match(/what is (\d+) minus (\d+)/i);
+  if (minusMatch) {
+    const num1 = parseInt(minusMatch[1], 10);
+    const num2 = parseInt(minusMatch[2], 10);
+    return `The answer is ${num1 - num2}`;
+  }
 }
