@@ -18,6 +18,16 @@ export default function QueryProcessor(query: string): string {
   }
 
 
+const complexMathMatch = query.match(
+  /what is (\d+) plus (\d+) multiplied by (\d+)/i
+);
+if (complexMathMatch) {
+  const num1 = parseInt(complexMathMatch[1], 10);
+  const num2 = parseInt(complexMathMatch[2], 10);
+  const num3 = parseInt(complexMathMatch[3], 10);
+  return `${num1 + num2 * num3}`;
+}
+
 const tripleAddMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
 if (tripleAddMatch) {
   const num1 = parseInt(tripleAddMatch[1], 10);
