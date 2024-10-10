@@ -16,7 +16,15 @@ export default function QueryProcessor(query: string): string {
     const num2 = parseInt(minusMatch[2], 10);
     return `${num1 - num2}`;
   }
-
+const complexMathAddOneMatch = query.match(
+  /what is (\d+) plus (\d+) multiplied by (\d+) add one/i
+);
+if (complexMathAddOneMatch) {
+  const num1 = parseInt(complexMathAddOneMatch[1], 10);
+  const num2 = parseInt(complexMathAddOneMatch[2], 10);
+  const num3 = parseInt(complexMathAddOneMatch[3], 10);
+  return `${num1 + num2 * num3 + 1}`;
+}
 
 const complexMathMatch = query.match(
   /what is (\d+) plus (\d+) multiplied by (\d+)/i
@@ -77,7 +85,5 @@ if (powerMatch) {
   const exponent = parseInt(powerMatch[2], 10);
   return `${Math.pow(base, exponent).toLocaleString('fullwide', { useGrouping: false })}`;
 }
-
-
 return "Query not recognized.";
 }
