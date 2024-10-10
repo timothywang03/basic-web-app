@@ -17,6 +17,16 @@ export default function QueryProcessor(query: string): string {
     return `${num1 - num2}`;
   }
 
+const complexMathMatch1 = query.match(
+  /what is (\d+) multiplied by (\d+) plus (\d+)/i
+);
+if (complexMathMatch1) {
+  const num1 = parseInt(complexMathMatch1[1], 10);
+  const num2 = parseInt(complexMathMatch1[2], 10);
+  const num3 = parseInt(complexMathMatch1[3], 10);
+  return `${num1 * num2 + num3}`;
+}
+
 const complexMathMatch = query.match(
   /what is (\d+) plus (\d+) multiplied by (\d+)/i
 );
