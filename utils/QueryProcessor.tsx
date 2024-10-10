@@ -29,6 +29,16 @@ if (multiplyMatch) {
   const num2 = parseInt(multiplyMatch[2], 10);
   return `The answer is ${num1 * num2}`;
 }
+const squareCubeMatch = query.match(/which of the following numbers is both a square and a cube: ([\d, ]+)/i);
+if (squareCubeMatch) {
+  const numbers = squareCubeMatch[1].split(',').map(num => parseInt(num.trim(), 10));
+  const result = numbers.find(num => {
+    const sqrt = Math.sqrt(num);
+    const cbrt = Math.cbrt(num);
+    return Number.isInteger(sqrt) && Number.isInteger(cbrt);
+  });
+  return result !== undefined ? `The number ${result} is both a square and a cube.` : "None of the numbers are both a square and a cube.";
+}
 
 return "Query not recognized.";
 }
