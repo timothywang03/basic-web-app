@@ -16,6 +16,15 @@ export default function QueryProcessor(query: string): string {
     const num2 = parseInt(minusMatch[2], 10);
     return `${num1 - num2}`;
   }
+
+
+const tripleAddMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
+if (tripleAddMatch) {
+  const num1 = parseInt(tripleAddMatch[1], 10);
+  const num2 = parseInt(tripleAddMatch[2], 10);
+  const num3 = parseInt(tripleAddMatch[3], 10);
+  return `${num1 + num2 + num3}`;
+}
 const addMatch = query.match(/what is (\d+) plus (\d+)/i);
 if (addMatch) {
   const num1 = parseInt(addMatch[1], 10);
@@ -58,13 +67,7 @@ if (powerMatch) {
   const exponent = parseInt(powerMatch[2], 10);
   return `${Math.pow(base, exponent).toLocaleString('fullwide', { useGrouping: false })}`;
 }
-const tripleAddMatch = query.match(/what is (\d+) plus (\d+) plus (\d+)/i);
-if (tripleAddMatch) {
-  const num1 = parseInt(tripleAddMatch[1], 10);
-  const num2 = parseInt(tripleAddMatch[2], 10);
-  const num3 = parseInt(tripleAddMatch[3], 10);
-  return `${num1 + num2 + num3}`;
-}
+
 
 return "Query not recognized.";
 }
